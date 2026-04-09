@@ -21,7 +21,7 @@ A personal reading list manager. Tracks books with reading status, ratings, genr
 | PATCH | /api/books/:id/rating | Rate a book (1-5) |
 | GET | /api/stats | Reading statistics (counts, avg rating) |
 | GET | /api/stats/genres | Books grouped by genre |
-### Book statuses
+## Book statuses
 - `want_to_read` — on the reading list
 - `reading` — currently reading
 - `finished` — completed
