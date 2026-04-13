@@ -1,0 +1,92 @@
+openapi: 3.1.0
+info:
+  title: Api
+  version: 0.1.0
+  description: Book Library API — manage your personal reading list
+servers:
+  - url: /api
+tags:
+  - name: health
+  - name: books
+  - name: stats
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  /books:
+    get:
+      operationId: listBooks
+      tags: [books]
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [want_to_read, reading, finished, abandoned]
+        - name: genre
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Book"
+    post:
+      operationId: createBook
+      tags: [books]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateBookBody"
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Book"
+
+  /books/{id}:
+    get:
+      operationId: getBook
+      tags: [books]
+      ...
+    patch:
+      operationId: updateBook
+      tags: [books]
+      ...
+    delete:
+      operationId: deleteBook
+      tags: [books]
+      ...
+
+  /books/{id}/rating:
+    patch:
+      operationId: rateBook
+      tags: [books]
+      ...
+
+  /stats:
+    get:
+      operationId: getReadingStats
+      tags: [stats]
+      ...
+
+  /stats/genres:
+    get:
+      operationId: getGenreBreakdown
+      tags: [stats]
+      ...
