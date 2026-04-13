@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "target": "ESNext",
+      "module": "NodeNext",
+      "moduleResolution": "NodeNext",
+      "baseUrl": ".",
+      "paths": {
+        "@workspace/db": ["./src/db/index.ts"],
+        "@workspace/api-zod": ["./src/lib/types.ts"] 
+      },
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true
+    }
+  }
+  
